@@ -19,5 +19,16 @@
         android:background="#fff"
         android:layout_margin="8dp"/>
 
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="画线"
+        android:textColor="#000"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:background="#fff"
+        android:layout_margin="8dp"/>
+
 
 </LinearLayout>

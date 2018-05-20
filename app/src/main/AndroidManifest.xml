@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".point.PointActivity"></activity>
+        <activity android:name=".point.PointActivity" />
+        <activity android:name=".line.LineActivity"></activity>
     </application>
 
 </manifest>

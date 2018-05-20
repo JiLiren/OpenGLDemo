@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.freedom.demo.line.LineActivity;
 import com.freedom.demo.point.PointActivity;
 
 
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PointActivity.class));
+            }
+        });
+
+        findViewById(R.id.tv_line).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LineActivity.class));
             }
         });
     }
