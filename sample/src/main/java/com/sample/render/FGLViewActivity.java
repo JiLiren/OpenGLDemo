@@ -39,12 +39,14 @@ public class FGLViewActivity extends AppCompatActivity implements View.OnClickLi
         mGLView= (FGLView) findViewById(R.id.mGLView);
     }
 
+    @Override
     public void onClick(View view){
         switch (view.getId()){
             case R.id.mChange:
                 Intent intent=new Intent(this,ChooseActivity.class);
                 startActivityForResult(intent,REQ_CHOOSE);
                 break;
+            default:break;
         }
     }
 
