@@ -24,7 +24,9 @@ public class DemoGLView extends GLSurfaceView {
         setRenderer(mRanderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         try {
-            mRanderer.setBitmap(BitmapFactory.decodeStream(getResources().getAssets().open("cat.png")));
+            mRanderer.setBitmap(BitmapFactory.decodeStream(getResources().getAssets().open("bank_tile.png")),
+                    BitmapFactory.decodeStream(getResources().getAssets().open("cat.png"))
+            );
             requestRender();
         } catch (IOException e) {
             e.printStackTrace();

@@ -19,7 +19,7 @@ public class DemoRandene implements GLSurfaceView.Renderer {
 
     private Context context;
     private Filter filter;
-    private Bitmap bitmap;
+    private Bitmap bitmap1,bitmap2;
     private FloatBuffer bPos1;
     private FloatBuffer bPos2;
     private FloatBuffer bPos3;
@@ -324,12 +324,10 @@ public class DemoRandene implements GLSurfaceView.Renderer {
     }
 
 
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setBitmap(Bitmap bitmap1,Bitmap bitmap2) {
+        this.bitmap1 = bitmap1;
+        this.bitmap2 = bitmap2;
     }
 
     @Override
@@ -349,8 +347,8 @@ public class DemoRandene implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         GLES20.glViewport(0,0,width,height);
-        int aw=bitmap.getWidth();
-        int ah=bitmap.getHeight();
+        int aw=bitmap1.getWidth();
+        int ah=bitmap1.getHeight();
         float aWH=aw/(float)ah;
         float aWidthHeight=width/(float)height;
         uXY=aWidthHeight;
@@ -390,7 +388,7 @@ public class DemoRandene implements GLSurfaceView.Renderer {
         GLES20.glEnableVertexAttribArray(glHPosition);
         GLES20.glEnableVertexAttribArray(glHCoordinate);
         GLES20.glUniform1i(glHTexture, 0);
-        textureId=createTexture();
+        textureId=createTexture1();
         GLES20.glVertexAttribPointer(glHPosition,2,GLES20.GL_FLOAT,false,0,bPos1);
         GLES20.glVertexAttribPointer(glHCoordinate,2,GLES20.GL_FLOAT,false,0,bCoord);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP,0,4);
@@ -439,6 +437,15 @@ public class DemoRandene implements GLSurfaceView.Renderer {
         GLES20.glVertexAttribPointer(glHCoordinate,2,GLES20.GL_FLOAT,false,0,bCoord);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP,0,4);
 
+
+//        GLES20.glUniform1i(hIsHalf,0);
+//        //是否是一半
+//        GLES20.glUniform1f(glHUxy,uXY);
+//        GLES20.glUniformMatrix4fv(glHMatrix,1,false,mMVPMatrix,0);
+//        GLES20.glEnableVertexAttribArray(glHPosition);
+//        GLES20.glEnableVertexAttribArray(glHCoordinate);
+//        GLES20.glUniform1i(glHTexture, 0);
+        textureId=createTexture2();
         GLES20.glVertexAttribPointer(glHPosition,2,GLES20.GL_FLOAT,false,0,bPos13);
         GLES20.glVertexAttribPointer(glHCoordinate,2,GLES20.GL_FLOAT,false,0,bCoord);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP,0,4);
@@ -457,9 +464,9 @@ public class DemoRandene implements GLSurfaceView.Renderer {
 
     }
 
-    private int createTexture(){
+    private int createTexture1(){
         int[] texture=new int[1];
-        if(bitmap!=null&&!bitmap.isRecycled()){
+        if(bitmap1!=null&&!bitmap1.isRecycled()){
             //生成纹理
             GLES20.glGenTextures(1,texture,0);
             //生成纹理
@@ -473,7 +480,29 @@ public class DemoRandene implements GLSurfaceView.Renderer {
             //设置环绕方向T，截取纹理坐标到[1/2n,1-1/2n]。将导致永远不会与border融合
             GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
             //根据以上指定的参数，生成一个2D纹理
-            GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+            GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap1, 0);
+            return texture[0];
+        }
+        return 0;
+    }
+
+    private int createTexture2(){
+        int[] texture=new int[1];
+        if(bitmap2!=null&&!bitmap2.isRecycled()){
+            //生成纹理
+            GLES20.glGenTextures(1,texture,0);
+            //生成纹理
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D,texture[0]);
+            //设置缩小过滤为使用纹理中坐标最接近的一个像素的颜色作为需要绘制的像素颜色
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER,GLES20.GL_NEAREST);
+            //设置放大过滤为使用纹理中坐标最接近的若干个颜色，通过加权平均算法得到需要绘制的像素颜色
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,GLES20.GL_TEXTURE_MAG_FILTER,GLES20.GL_LINEAR);
+            //设置环绕方向S，截取纹理坐标到[1/2n,1-1/2n]。将导致永远不会与border融合
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_CLAMP_TO_EDGE);
+            //设置环绕方向T，截取纹理坐标到[1/2n,1-1/2n]。将导致永远不会与border融合
+            GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
+            //根据以上指定的参数，生成一个2D纹理
+            GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap2, 0);
             return texture[0];
         }
         return 0;
