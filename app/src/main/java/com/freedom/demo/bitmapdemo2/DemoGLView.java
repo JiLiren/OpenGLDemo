@@ -3,6 +3,7 @@ package com.freedom.demo.bitmapdemo2;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.opengl.GLSurfaceView;
+import android.view.View;
 
 import java.io.IOException;
 
@@ -28,6 +29,13 @@ public class DemoGLView extends GLSurfaceView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestRender();
+            }
+        });
     }
 
     public DemoRandene getRanderer() {
