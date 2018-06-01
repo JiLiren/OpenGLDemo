@@ -13,7 +13,6 @@ public class Square {
 
     private FloatBuffer vertexBuffer;
     private ShortBuffer indexBuffer;
-
     private final String vertexShaderCode =
             "attribute vec4 vPosition;" +
                     "uniform mat4 vMatrix;"+
@@ -88,6 +87,8 @@ public class Square {
         GLES20.glAttachShader(mProgram, fragmentShader);
         //连接到着色器程序
         GLES20.glLinkProgram(mProgram);
+
+
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
         //获取变换矩阵vMatrix成员句柄
