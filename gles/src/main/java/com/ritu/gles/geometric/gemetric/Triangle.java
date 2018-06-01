@@ -1,4 +1,4 @@
-package com.ritu.gles.geometric;
+package com.ritu.gles.geometric.gemetric;
 
 import android.opengl.GLES20;
 import android.view.View;
@@ -7,7 +7,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
@@ -54,7 +53,7 @@ public class Triangle {
     /** 颜色通道 */
     float colorArray[] = { 0.4f, 0.2f, 0.8f, 1.0f };
 
-    Triangle() {
+    public Triangle() {
         ByteBuffer bb = ByteBuffer.allocateDirect(
                 triangleCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
@@ -62,6 +61,10 @@ public class Triangle {
         vertexBuffer = bb.asFloatBuffer();
         vertexBuffer.put(triangleCoords);
         vertexBuffer.position(0);
+
+    }
+
+    public void onDrawFrame(GL10 gl) {
         int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER,
                 vertexShaderCode);
         int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER,
@@ -75,17 +78,7 @@ public class Triangle {
         GLES20.glAttachShader(mProgram, fragmentShader);
         //连接到着色器程序
         GLES20.glLinkProgram(mProgram);
-    }
 
-    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-
-    }
-
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-
-    }
-
-    public void onDrawFrame(GL10 gl) {
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
         //获取顶点着色器的vPosition成员句柄
@@ -105,7 +98,6 @@ public class Triangle {
         //禁止顶点数组的句柄
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }
-
 
     private int loadShader(int type, String shaderCode){
         //根据type创建顶点着色器或者片元着色器
