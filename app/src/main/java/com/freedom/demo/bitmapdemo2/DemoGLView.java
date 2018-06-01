@@ -22,7 +22,8 @@ public class DemoGLView extends GLSurfaceView {
         setEGLContextClientVersion(2);
         mRanderer = new DemoRandene(context);
         setRenderer(mRanderer);
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+//        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
         try {
             mRanderer.setBitmap(BitmapFactory.decodeStream(getResources().getAssets().open("bank_tile.png")),
                     BitmapFactory.decodeStream(getResources().getAssets().open("cat.png"))

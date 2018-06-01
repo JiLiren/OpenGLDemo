@@ -1,1 +1,1 @@
-include ':app', ':sample', ':lean', ':demo'
+include ':app', ':sample', ':demo', ':gles'
