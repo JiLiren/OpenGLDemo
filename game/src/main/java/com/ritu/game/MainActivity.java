@@ -1,4 +1,4 @@
-package com.demo;
+package com.ritu.game;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

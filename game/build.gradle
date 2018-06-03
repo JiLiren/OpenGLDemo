@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.demo"
+        applicationId "com.ritu.game"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
