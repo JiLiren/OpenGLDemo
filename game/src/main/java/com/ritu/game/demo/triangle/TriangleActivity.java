@@ -15,6 +15,7 @@ public class TriangleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("绘制三角形");
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mView = new TDView(this);
         //给view 获取焦点
