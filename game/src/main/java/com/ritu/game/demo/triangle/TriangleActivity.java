@@ -13,6 +13,7 @@ public class TriangleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setTitle("绘制三角形");
 
