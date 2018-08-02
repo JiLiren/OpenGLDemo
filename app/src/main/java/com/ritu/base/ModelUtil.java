@@ -1,4 +1,4 @@
-package com.freedom.demo.base;
+package com.ritu.base;
 
 import android.os.Build;
 import android.os.Environment;

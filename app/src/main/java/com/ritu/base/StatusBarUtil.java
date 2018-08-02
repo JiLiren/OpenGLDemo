@@ -1,4 +1,4 @@
-package com.freedom.demo.base;
+package com.ritu.base;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -11,7 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.freedom.demo.R;
+
+import com.ritu.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

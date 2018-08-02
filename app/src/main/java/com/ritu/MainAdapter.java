@@ -1,4 +1,4 @@
-package com.freedom.demo.base;
+package com.ritu;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.freedom.demo.R;
-import com.freedom.demo.d1_hello.D1Activity;
-import com.freedom.demo.d2_alert.D2Activity;
+import com.ritu.d1_hello.D1Activity;
+import com.ritu.d2_alert.D2Activity;
+import com.ritu.d3_start.D3Activity;
 
 /**
  * @author Vuetne on 2-Aug-18
@@ -26,9 +26,11 @@ public class MainAdapter extends BaseAdapter {
         mString.put(0,"HelloOpenGl");
         mClass.put(0, D1Activity.class);
 
-
         mString.put(1,"Alert");
-        mClass.put(2, D2Activity.class);
+        mClass.put(1, D2Activity.class);
+
+        mString.put(2,"Star");
+        mClass.put(2, D3Activity.class);
     }
 
     public MainAdapter(Context context) {

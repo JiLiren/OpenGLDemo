@@ -1,24 +1,17 @@
-package com.freedom.demo.base;
+package com.ritu.base;
 
 import android.content.Context;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import com.freedom.demo.R;
-
-import java.util.concurrent.TimeUnit;
+import com.ritu.R;
 
 
 /**
@@ -29,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
+    protected GLSurfaceView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +36,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
         TextView titleView = findViewById(R.id.tv_title);
         titleView.setText(initTitle());
-        layout.addView(contentView());
+        mView = new GLSurfaceView(this);
+        mView.setEGLContextClientVersion(2);
+        mView.setPreserveEGLContextOnPause(true);
+        layout.addView(mView);
+        mView.setRenderer(createRenderer());
         initView(savedInstanceState);
         if (StatusBarUtil.canStatusChangeColor()) {
             StatusBarUtil.setTranslucentForImageView(this, 0, null, true);
@@ -73,7 +71,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return 布局ID
      */
-    protected abstract View contentView();
+    protected abstract GLSurfaceView.Renderer createRenderer();
 
 
     /**

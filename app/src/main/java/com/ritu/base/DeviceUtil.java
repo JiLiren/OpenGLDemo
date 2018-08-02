@@ -1,4 +1,4 @@
-package com.freedom.demo.base;
+package com.ritu.base;
 
 import android.app.Activity;
 import android.content.Context;

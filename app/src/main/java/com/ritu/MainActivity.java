@@ -1,10 +1,9 @@
-package com.freedom.demo.base;
+package com.ritu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.freedom.demo.R;
 
 
 /**
