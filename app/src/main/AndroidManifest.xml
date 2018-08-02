@@ -9,19 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".point.PointActivity" />
-        <activity android:name=".line.LineActivity" />
-        <activity android:name=".camera.CameraActivity"></activity>
-        <activity android:name=".bitmapdemo2.DemoTwoActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".demo3.Demo3Activity">
-
         </activity>
     </application>
 
