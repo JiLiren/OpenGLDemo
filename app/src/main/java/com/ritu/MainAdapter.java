@@ -29,6 +29,11 @@ public class MainAdapter extends BaseAdapter {
         mString.put(2,"多边形");
         mClass.put(2, 2);
 
+        mString.put(3,"渐变色");
+        mClass.put(3, 3);
+
+        mString.put(4,"动画");
+        mClass.put(4, 4);
 
     }
 

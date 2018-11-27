@@ -82,6 +82,8 @@ public class PolygonRender extends BaseRenderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
+        outputWidth = width;
+        outputHeight = height;
         GLES20.glViewport(0, 0, width, height);
     }
 

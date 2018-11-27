@@ -10,6 +10,8 @@ import com.ritu.golbal.BaseRenderer;
 import com.ritu.item1.PointRender;
 import com.ritu.item2.BasisRender;
 import com.ritu.item3.PolygonRender;
+import com.ritu.item4.ColorfulRender;
+import com.ritu.item5.DynamicRender;
 
 public class SecondActivity extends AppCompatActivity {
     private String key = "key";
@@ -47,6 +49,12 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case 2:
                     mRender = new PolygonRender(SecondActivity.this);
+                    break;
+                case 3:
+                    mRender = new ColorfulRender(SecondActivity.this);
+                    break;
+                case 4:
+                    mRender = new DynamicRender(SecondActivity.this);
                     break;
                 default:break;
             }
