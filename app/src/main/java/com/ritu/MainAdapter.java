@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.ritu.d1_hello.D1Activity;
-import com.ritu.d2_alert.D2Activity;
-import com.ritu.d3_start.D3Activity;
 
 /**
  * @author Vuetne on 2-Aug-18
@@ -20,17 +17,17 @@ public class MainAdapter extends BaseAdapter {
     private Context context;
     private SparseArray<View> mView = new SparseArray<>();
     private static SparseArray<String> mString = new SparseArray<>();
-    private static SparseArray<Class> mClass = new SparseArray<>();
+    private static SparseArray<Integer> mClass = new SparseArray<>();
 
     static {
-        mString.put(0,"HelloOpenGl");
-        mClass.put(0, D1Activity.class);
+        mString.put(0,"点");
+        mClass.put(0, 0);
 
-        mString.put(1,"Alert");
-        mClass.put(1, D2Activity.class);
-
-        mString.put(2,"Star");
-        mClass.put(2, D3Activity.class);
+//        mString.put(1,"Alert");
+//        mClass.put(1, D2Activity.class);
+//
+//        mString.put(2,"Star");
+//        mClass.put(2, D3Activity.class);
     }
 
     public MainAdapter(Context context) {
@@ -61,7 +58,10 @@ public class MainAdapter extends BaseAdapter {
             TextView textView = convertView.findViewById(R.id.tv_name);
             textView.setText(mString.get(position));
             textView.setOnClickListener(v -> {
-                context.startActivity(new Intent(context,mClass.get(position)));
+                Intent intent = new Intent();
+                intent.putExtra("key",mClass.get(position));
+                intent.setClass(context,SecondActivity.class);
+                context.startActivity(intent);
             });
             mView.put(position,convertView);
         }

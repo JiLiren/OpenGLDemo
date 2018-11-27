@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".d1_hello.D1Activity" />
         <activity android:name=".d2_alert.D2Activity" />
-        <activity android:name=".d3_start.D3Activity"/>
+        <activity android:name=".d3_start.D3Activity" />
+        <activity android:name=".SecondActivity"></activity>
     </application>
 
 </manifest>
