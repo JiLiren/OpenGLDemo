@@ -56,7 +56,8 @@ public class PointRender extends BaseRenderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width,int height) {
-        super.onSurfaceChanged(gl, width, height);
+        outputWidth = width;
+        outputHeight = height;
         GLES20.glViewport(0, 0, width, height);
     }
 

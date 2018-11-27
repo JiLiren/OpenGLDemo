@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.ritu.golbal.BaseRenderer;
 import com.ritu.item1.PointRender;
@@ -26,6 +27,8 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initView(){
         mSurfaceView = findViewById(R.id.surface);
+        mSurfaceView.setEGLContextClientVersion(2);
+        mSurfaceView.setEGLConfigChooser(false);
     }
 
     private void initData(){
@@ -44,6 +47,7 @@ public class SecondActivity extends AppCompatActivity {
         if (mRender != null){
             mSurfaceView.setRenderer(mRender);
             mSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+            mSurfaceView.setOnClickListener(v -> mSurfaceView.requestRender());
         }
     }
 }
