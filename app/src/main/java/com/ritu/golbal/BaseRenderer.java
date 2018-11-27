@@ -10,7 +10,6 @@ import com.ritu.util.ShaderHelper;
 
 import java.nio.ByteBuffer;
 
-import javax.microedition.khronos.opengles.GL10;
 
 public abstract class BaseRenderer implements GLSurfaceView.Renderer {
 

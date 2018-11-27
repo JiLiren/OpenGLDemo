@@ -10,9 +10,10 @@ public class ProjectionMatrixHelper {
     public ProjectionMatrixHelper(int program, String name) {
         this.program = program;
         this.name = name;
+        uMatrixLocation = GLES20.glGetUniformLocation(program, name);
     }
 
-    private int uMatrixLocation = GLES20.glGetUniformLocation(program, name);
+    private int uMatrixLocation;
 
     private float[] mProjectionMatrix = new float[]{1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f};
 
