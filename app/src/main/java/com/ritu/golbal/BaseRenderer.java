@@ -51,11 +51,11 @@ public abstract class BaseRenderer implements GLSurfaceView.Renderer {
         return GLES20.glGetAttribLocation(program, name);
     }
 
-    @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-        outputWidth = width;
-        outputHeight = height;
-    }
+//    @Override
+//    public void onSurfaceChanged(GL10 gl, int width, int height) {
+//        outputWidth = width;
+//        outputHeight = height;
+//    }
 
     /**
      * 获取当前画面帧,并回调接口

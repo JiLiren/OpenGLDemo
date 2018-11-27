@@ -23,11 +23,10 @@ public class MainAdapter extends BaseAdapter {
         mString.put(0,"点");
         mClass.put(0, 0);
 
-//        mString.put(1,"Alert");
-//        mClass.put(1, D2Activity.class);
-//
-//        mString.put(2,"Star");
-//        mClass.put(2, D3Activity.class);
+        mString.put(1,"基础");
+        mClass.put(1, 1);
+
+
     }
 
     public MainAdapter(Context context) {

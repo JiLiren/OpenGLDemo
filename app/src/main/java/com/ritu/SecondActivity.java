@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.ritu.golbal.BaseRenderer;
 import com.ritu.item1.PointRender;
+import com.ritu.item2.BasisRender;
 
 public class SecondActivity extends AppCompatActivity {
     private String key = "key";
@@ -40,6 +41,8 @@ public class SecondActivity extends AppCompatActivity {
                 case 0:
                     mRender = new PointRender();
                     break;
+                case 1:
+                    mRender = new BasisRender(SecondActivity.this);
                 default:break;
             }
         }
