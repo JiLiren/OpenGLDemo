@@ -26,6 +26,9 @@ public class MainAdapter extends BaseAdapter {
         mString.put(1,"基础");
         mClass.put(1, 1);
 
+        mString.put(2,"多边形");
+        mClass.put(2, 2);
+
 
     }
 

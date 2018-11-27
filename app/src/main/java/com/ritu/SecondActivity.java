@@ -9,6 +9,7 @@ import android.view.View;
 import com.ritu.golbal.BaseRenderer;
 import com.ritu.item1.PointRender;
 import com.ritu.item2.BasisRender;
+import com.ritu.item3.PolygonRender;
 
 public class SecondActivity extends AppCompatActivity {
     private String key = "key";
@@ -43,6 +44,10 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case 1:
                     mRender = new BasisRender(SecondActivity.this);
+                    break;
+                case 2:
+                    mRender = new PolygonRender(SecondActivity.this);
+                    break;
                 default:break;
             }
         }
