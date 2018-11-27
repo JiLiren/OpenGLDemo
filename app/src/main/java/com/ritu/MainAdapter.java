@@ -35,6 +35,9 @@ public class MainAdapter extends BaseAdapter {
         mString.put(4,"动画");
         mClass.put(4, 4);
 
+        mString.put(5,"纹理");
+        mClass.put(5, 5);
+
     }
 
     public MainAdapter(Context context) {
