@@ -33,6 +33,7 @@ public class SecondActivity extends AppCompatActivity {
         mSurfaceView = findViewById(R.id.surface);
         mSurfaceView.setEGLContextClientVersion(2);
         mSurfaceView.setEGLConfigChooser(false);
+
     }
 
     private void initData(){
@@ -69,6 +70,7 @@ public class SecondActivity extends AppCompatActivity {
         if (mRender != null){
             mSurfaceView.setRenderer(mRender);
             mSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+//            mSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
             mSurfaceView.setOnClickListener(v -> mSurfaceView.requestRender());
         }
     }

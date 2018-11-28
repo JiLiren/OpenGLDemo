@@ -129,7 +129,7 @@ public class PolygonRender extends BaseRenderer {
 
     private void drawPoint() {
         GLES20.glUniform4f(uColorLocation, 0.0f, 0.0f, 0.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_POINTS, 0, mPolygonVertexCount + 2);
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 1, mPolygonVertexCount + 1);
     }
 
     private void drawLine() {

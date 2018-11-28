@@ -26,7 +26,7 @@ public class PointRender extends BaseRenderer {
             "{\n" +
             "    gl_FragColor = u_Color;\n" +
             "}";
-    private float[] POINT_DATA = new float[]{0f, 0f};
+    private float[] POINT_DATA = new float[]{1f, 1.0f};
     private int POSITION_COMPONENT_COUNT = 2;
     private FloatBuffer vertexData;
     private int uColorLocation;

@@ -37,8 +37,16 @@ public class BasisRender extends BaseRenderer {
      * 顶点数据数组
      */
     private float[] POINT_DATA = new float[]{
-            // 两个点的x,y坐标（x，y各占1个分量）
-            0f, 0f, 0f, 0.5f, -0.5f, 0f, 0f, 0f - 0.5f, 0.5f, 0f - 0.5f, 0.5f, 0.5f - 0.5f};
+//            // 两个点的x,y坐标（x，y各占1个分量）
+            0f, 0f, 0f, 0.5f, -0.5f, 0f, 0f, 0f - 0.5f, 0.5f, 0f - 0.5f, 0.5f, 0.5f - 0.5f,-0.5f,0.5f};
+
+//    private float[] POINT_DATA = new float[]{
+//            // 两个点的x,y坐标（x，y各占1个分量）
+//             0f, - 0.5f, 0.5f, - 0.5f, 0.5f, 0f,-0.5f,0.5f};
+////    private float[] POINT_DATA = new float[]{
+////             两个点的x,y坐标（x，y各占1个分量）
+////            0f, 0f, 0f, 0.5f, -0.5f, 0f, 0f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f - 0.5f};
+
     private int POSITION_COMPONENT_COUNT = 2;
     private int DRAW_COUNT = POINT_DATA.length / POSITION_COMPONENT_COUNT;
 
@@ -103,9 +111,19 @@ public class BasisRender extends BaseRenderer {
         // GL_LINE_LOOP：按顺序将所有的点连接起来，包括首位相连
         // GL_LINE_STRIP：按顺序将所有的点连接起来，不包括首位相连
         GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
+
+        //GL_LINE_LOOP
+        //GL_LINE_STRIP
         GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, drawIndex);
     }
 
+    /**
+     * 1.GL_TRIANGLES：每三个顶之间绘制三角形，之间不连接
+     *
+     * 2.GL_TRIANGLE_FAN：以V0V1V2,V0V2V3,V0V3V4，……的形式绘制三角形
+     *
+     * 3.GL_TRIANGLE_STRIP：顺序在每三个顶点之间均绘制三角形。这个方法可以保证从相同的方向上所有三角形均被绘制。以V0V1V2,V1V2V3,V2V3V4……的形式绘制三角形
+     * */
     private void drawTriangle() {
         // GL_TRIANGLES：每3个点构成一个三角形
         // GL_TRIANGLE_STRIP：相邻3个点构成一个三角形,不包括首位两个点
