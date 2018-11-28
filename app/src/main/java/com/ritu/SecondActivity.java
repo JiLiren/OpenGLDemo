@@ -13,6 +13,7 @@ import com.ritu.item4.ColorfulRender;
 import com.ritu.item5.DynamicRender;
 import com.ritu.item6.TextureRender;
 import com.ritu.item7.MultipleTextureRender;
+import com.ritu.item8.TextRender;
 
 public class SecondActivity extends AppCompatActivity {
     private String key = "key";
@@ -62,6 +63,9 @@ public class SecondActivity extends AppCompatActivity {
                     break;
                 case 6:
                     mRender = new MultipleTextureRender(SecondActivity.this);
+                    break;
+                case 7:
+                    mRender = new TextRender(SecondActivity.this);
                     break;
                 default:break;
             }

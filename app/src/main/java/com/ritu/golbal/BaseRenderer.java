@@ -18,6 +18,7 @@ public abstract class BaseRenderer implements GLSurfaceView.Renderer {
     public boolean isReadCurrentFrame;
     protected int outputWidth;
     protected int outputHeight;
+    protected float outputRatio;
 
 
     /**

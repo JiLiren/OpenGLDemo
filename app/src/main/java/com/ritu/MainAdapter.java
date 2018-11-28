@@ -41,6 +41,9 @@ public class MainAdapter extends BaseAdapter {
         mString.put(6,"多纹理");
         mClass.put(6, 6);
 
+        mString.put(7,"字体绘制");
+        mClass.put(7, 7);
+
     }
 
     public MainAdapter(Context context) {
