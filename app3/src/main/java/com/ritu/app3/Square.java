@@ -42,16 +42,18 @@ public class Square {
     static final int COORDS_PER_VERTEX = 3;
     static float squareCoords[] = {
             // top left
-            -0.5f,  0.5f, 0.0f,
+            -0.2f,  0.2f, 0.0f,
             // bottom left
-            -0.5f, -0.5f, 0.0f,
+            -0.2f, -0.2f, 0.0f,
+             0.3f,0.0f,0.0f,
             // bottom right
-             0.5f, -0.5f, 0.0f,
+             0.2f, -0.2f, 0.0f,
             // top right
-             0.5f,  0.5f, 0.0f };
+             0.2f,  0.2f, 0.0f,
+            -0.3f,0.0f,0.0f};
 
     //以绘制顶点
-    private final short drawOrder[] = { 0, 1, 2, 0, 2, 3 };
+    private final short drawOrder[] = { 0, 1, 2, 0, 2, 3 ,0,3,4,0,4,5};
 
     //每个顶点4个字节
     private final int vertexStride = COORDS_PER_VERTEX * 4;

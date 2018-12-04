@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.ritu.golbal.BaseRenderer;
 import com.ritu.item1.PointRender;
+import com.ritu.item1.TRender;
 import com.ritu.item2.BasisRender;
 import com.ritu.item3.PolygonRender;
 import com.ritu.item4.ColorfulRender;
@@ -44,7 +45,7 @@ public class SecondActivity extends AppCompatActivity {
 
             switch (type){
                 case 0:
-                    mRender = new PointRender();
+                    mRender = new TRender();
                     break;
                 case 1:
                     mRender = new BasisRender(SecondActivity.this);
