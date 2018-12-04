@@ -50,10 +50,10 @@ public class PolygonRender extends BaseRenderer {
      * 多边形的顶点数，即边数
      */
     private int mPolygonVertexCount = 3;
-    /**
-     * 绘制所需要的顶点数
-     */
-    private float[] mPointData;
+        /**
+         * 绘制所需要的顶点数
+         */
+        private float[] mPointData;
 
     String vertexShader = VERTEX_SHADER;
 
