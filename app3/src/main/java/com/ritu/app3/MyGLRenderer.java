@@ -37,12 +37,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String TAG = "MyGLRenderer";
     private Triangle mTriangle;
     private Square   mSquare;
+    private T t;
 
     //mMVPMatrix是“模型视图投影矩阵”的缩写
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
     private final float[] mRotationMatrix = new float[16];
+
+
+    private final float[] scaleMatrix = new float[16];
 
     private float mAngle;
 
@@ -54,6 +58,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         mTriangle = new Triangle();
         mSquare   = new Square();
+        t = new T();
     }
 
     @Override
@@ -70,7 +75,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
         //画正方形
-        mSquare.draw(mMVPMatrix);
+//        mSquare.draw(mMVPMatrix);
 
         //为三角形创建一个旋转
 
@@ -78,16 +83,36 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         //使用TouchEvents时保留此代码。
         // long time = SystemClock.uptimeMillis（）％4000L;
         // float angle = 0.090f *（（int）time）;
-
+        Log.e("11111",mAngle +"");
+        GLES20.;
+        SwapBuffer
+        float[] a = new float[16];
+        Matrix.scaleM(scaleMatrix, 0, 1f, 1f, 1f);
         Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, 1.0f);
+
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+
+
+
+//        (float[] m, int mOffset, float x, float y, float
+
+
+
 
         //将旋转矩阵与投影和摄像机视图组合在一起
         //请注意，mMVPMatrix因子*必须先按顺序排列*
         //使矩阵乘法乘积正确。
-        Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
 
+
+
+//        Matrix.multiplyMM(a, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+//        Matrix.multiplyMM(scratch, 0, a, 0, scaleMatrix, 0);
         // 画三角形
-//        mTriangle.draw(scratch);
+        mTriangle.draw(scratch);
+//        t.onDrawFrame();
     }
 
     @Override

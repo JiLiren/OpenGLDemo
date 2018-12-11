@@ -45,7 +45,7 @@ public class SecondActivity extends AppCompatActivity {
 
             switch (type){
                 case 0:
-                    mRender = new TRender();
+                    mRender = new PointRender();
                     break;
                 case 1:
                     mRender = new BasisRender(SecondActivity.this);

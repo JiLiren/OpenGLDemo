@@ -101,4 +101,5 @@ public class ColorfulRender extends BaseRenderer {
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, POINT_DATA.length / POSITION_COMPONENT_COUNT);
         GLES20.glDrawArrays(GLES20.GL_POINTS, 0, POINT_DATA.length / POSITION_COMPONENT_COUNT);
     }
+
 }

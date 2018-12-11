@@ -92,9 +92,9 @@ public class BasisRender extends BaseRenderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         drawIndex++;
         // 几何图形相关定义：http://wiki.jikexueyuan.com/project/opengl-es-guide/basic-geometry-definition.html
-        drawTriangle();
+//        drawTriangle();
         drawLine();
-        drawPoint();
+//        drawPoint();
         if (drawIndex >= DRAW_COUNT) {
             drawIndex = 0;
         }

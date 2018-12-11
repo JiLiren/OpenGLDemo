@@ -68,7 +68,6 @@ public class DynamicRender extends BaseRenderer {
     @Override
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-
         // 只要持有传递给GL层的Buffer引用，就可以动态改变相关的数据信息
         mVertexData.put(new float[]{
                 0.9f * mRandom.nextFloat() * (mRandom.nextFloat() > 0.5f ? 1 : -1),

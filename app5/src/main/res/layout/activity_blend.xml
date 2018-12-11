@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <edu.wuwang.opengl.blend.SquareRelativeLayout
+
+    <com.ritu.app5.blend.SquareRelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/mContainer"
         android:background="#8c06a1"
@@ -11,18 +12,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mGLView" />
-    </edu.wuwang.opengl.blend.SquareRelativeLayout>
+    </com.ritu.app5.blend.SquareRelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/mContainer"
         android:orientation="horizontal">
-        <edu.wuwang.opengl.blend.WheelView
+        <com.ritu.app5.blend.WheelView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/mSrcParam"/>
-        <edu.wuwang.opengl.blend.WheelView
+        <com.ritu.app5.blend.WheelView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
