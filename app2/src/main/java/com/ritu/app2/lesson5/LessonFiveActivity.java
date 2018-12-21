@@ -10,8 +10,7 @@ import android.widget.Toast;
 import com.ritu.app2.R;
 
 
-public class LessonFiveActivity extends Activity 
-{
+public class LessonFiveActivity extends Activity {
 	/** Hold a reference to our GLSurfaceView */
 	private LessonFiveGLSurfaceView mGLSurfaceView;
 	
@@ -34,8 +33,7 @@ public class LessonFiveActivity extends Activity
 
 			// Set the renderer to our demo renderer, defined below.
 			mGLSurfaceView.setRenderer(new LessonFiveRenderer(this));
-		} 
-		else {
+		} else {
 			// This is where you could create an OpenGL ES 1.x compatible
 			// renderer if you wanted to support both ES 1 and ES 2.
 			return;
@@ -50,16 +48,14 @@ public class LessonFiveActivity extends Activity
 	}
 
 	@Override
-	protected void onResume() 
-	{
+	protected void onResume() {
 		// The activity must call the GL surface view's onResume() on activity onResume().
 		super.onResume();
 		mGLSurfaceView.onResume();
 	}
 
 	@Override
-	protected void onPause() 
-	{
+	protected void onPause() {
 		// The activity must call the GL surface view's onPause() on activity onPause().
 		super.onPause();
 		mGLSurfaceView.onPause();

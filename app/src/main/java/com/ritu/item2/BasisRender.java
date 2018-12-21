@@ -91,7 +91,6 @@ public class BasisRender extends BaseRenderer {
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         drawIndex++;
-        // 几何图形相关定义：http://wiki.jikexueyuan.com/project/opengl-es-guide/basic-geometry-definition.html
 //        drawTriangle();
         drawLine();
 //        drawPoint();
@@ -110,10 +109,13 @@ public class BasisRender extends BaseRenderer {
         // GL_LINES：每2个点构成一条线段
         // GL_LINE_LOOP：按顺序将所有的点连接起来，包括首位相连
         // GL_LINE_STRIP：按顺序将所有的点连接起来，不包括首位相连
-        GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
 
-        //GL_LINE_LOOP
-        //GL_LINE_STRIP
+        GLES20.glLineWidth(20);
+        GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
+        GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, drawIndex);
+
+        GLES20.glLineWidth(10);
+        GLES20.glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
         GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 0, drawIndex);
     }
 

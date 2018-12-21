@@ -19,9 +19,9 @@ public class PolygonRender extends BaseRenderer {
 
     private List<Spirit> spirits = new ArrayList<>();
 
-    private float[] mViewMatrix=new float[16];
-    private float[] mProjectMatrix=new float[16];
-    private float[] mMVPMatrix=new float[16];
+    public float[] mViewMatrix=new float[16];
+    public float[] mProjectMatrix=new float[16];
+    public float[] mMVPMatrix=new float[16];
 
     public PolygonRender(Context context) {
         this.context = context;
@@ -37,7 +37,6 @@ public class PolygonRender extends BaseRenderer {
             spirit = new Spirit(this,array[i]);
             spirits.add(spirit);
         }
-
     }
 
     @Override
@@ -55,18 +54,19 @@ public class PolygonRender extends BaseRenderer {
         //设置透视投影
         Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
         //设置相机位置
-        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-        //计算变换矩阵
-        Matrix.multiplyMM(mMVPMatrix,0,mProjectMatrix,0,mViewMatrix,0);
-        Matrix.scaleM(mProjectMatrix,2,0.0f,0.0f,0.0f);
+        Matrix.setLookAtM(mViewMatrix, 0, 2, 2, 0.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+
+//        Matrix.scaleM(mProjectMatrix,2,0.0f,0.0f,0.0f);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
+
+
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         for (Spirit spirit: spirits){
             spirit.onCreate();
-            spirit.onDraw();
+            spirit.onDraw(this);
         }
     }
 

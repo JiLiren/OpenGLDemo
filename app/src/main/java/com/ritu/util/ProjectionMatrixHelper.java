@@ -26,4 +26,5 @@ public class ProjectionMatrixHelper {
         }
         GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, mProjectionMatrix, 0);
     }
+
 }

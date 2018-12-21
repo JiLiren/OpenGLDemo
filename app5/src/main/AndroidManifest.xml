@@ -15,7 +15,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".BApplication"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -57,6 +59,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".light.LightActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

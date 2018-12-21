@@ -2,6 +2,7 @@ package com.ritu.line;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import java.nio.FloatBuffer;
@@ -55,7 +56,6 @@ public class Spirit {
 
     private PolygonRender mRender;
     private  int co;
-    private int[] ca = new int[]{Color.BLACK,Color.BLUE,Color.CYAN,Color.DKGRAY,Color.GRAY,Color.GREEN,Color.LTGRAY,Color.MAGENTA,Color.RED,Color.YELLOW};
     private String[] a = new String[]{"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
     private boolean ready;
 
@@ -85,14 +85,14 @@ public class Spirit {
         GLES20.glEnableVertexAttribArray(aPositionLocation);
     }
 
-    public void onDraw(){
-        updateVertexData();
-        drawLine();
-        drawShape();
+    public void onDraw(PolygonRender render){
+        updateVertexData(render);
+        drawLine(render);
+        drawShape(render);
         updatePolygonVertexCount();
     }
 
-    private void updateVertexData() {
+    private void updateVertexData(PolygonRender render) {
         // 边数+中心点+闭合点；一个点包含x、y两个向量
         mPointData = new float[(mPolygonVertexCount + 2) * 2];
 
@@ -114,14 +114,20 @@ public class Spirit {
         mVertexData.position(0);
         GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT, GLES20.GL_FLOAT,
                 false, 0, mVertexData);
+
+//        Matrix.setIdentityM(render.mProjectMatrix, 0);
+//        Matrix.translateM(render.mProjectMatrix, 0, 0.0f, -1.0f, 0.0f);
+//        //计算变换矩阵
+//        Matrix.multiplyMM(render.mMVPMatrix,0,render.mProjectMatrix,0,render.mViewMatrix,0);
     }
 
-    private void drawLine() {
+    private void drawLine(PolygonRender render) {
         GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
+//        GLES20.glUniformMatrix4fv(uColorLocation, 1, false,render.mMVPMatrix, 0);
         GLES20.glDrawArrays(GLES20.GL_LINE_LOOP, 1, mPolygonVertexCount);
     }
 
-    private void drawShape() {
+    private void drawShape(PolygonRender render) {
         GLES20.glUniform4f(uColorLocation, ColorFormat.getRedFromARGB(co),  ColorFormat.getGreenFromARGB(co),  ColorFormat.getBlueFromARGB(co), 1.0f);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, mPolygonVertexCount + 2);
     }

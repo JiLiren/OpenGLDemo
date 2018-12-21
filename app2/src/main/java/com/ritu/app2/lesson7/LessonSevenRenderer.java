@@ -21,13 +21,13 @@ import com.ritu.app2.common.TextureHelper;
 
 
 /**
- * This class implements our custom renderer. Note that the GL10 parameter
- * passed in is unused for OpenGL ES 2.0 renderers -- the static class GLES20 is
- * used instead.
+ * 此类实现我们的自定义渲染器。 注意GL10参数
+ * 传入的OpenGL ES 2.0渲染器尚未使用 - 静态类GLES20是
+ * 改为使用。
  */
 public class LessonSevenRenderer implements GLSurfaceView.Renderer {
     /**
-     * Used for debug logs.
+     * 用于调试日志。
      */
     private static final String TAG = "LessonSevenRenderer";
 
@@ -35,160 +35,161 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
     private final GLSurfaceView mGlSurfaceView;
 
     /**
-     * Store the model matrix. This matrix is used to move models from object space (where each model can be thought
-     * of being located at the center of the universe) to world space.
+     * 存储模型矩阵。 该矩阵用于从对象空间移动模型（可以考虑每个模型）
+     * 位于宇宙中心）到世界空间。
      */
     private float[] mModelMatrix = new float[16];
 
     /**
-     * Store the view matrix. This can be thought of as our camera. This matrix transforms world space to eye space;
-     * it positions things relative to our eye.
+     * 存储视图矩阵。 这可以被认为是我们的相机。 该矩阵将世界空间转换为眼睛空间;
+     * 它定位相对于我们眼睛的东西。
      */
     private float[] mViewMatrix = new float[16];
 
     /**
-     * Store the projection matrix. This is used to project the scene onto a 2D viewport.
+     * 存储投影矩阵。 这用于将场景投影到2D视口上。
      */
     private float[] mProjectionMatrix = new float[16];
 
     /**
-     * Allocate storage for the final combined matrix. This will be passed into the shader program.
+     * 为最终组合矩阵分配存储空间。 这将被传递到着色器程序。
      */
     private float[] mMVPMatrix = new float[16];
 
     /**
-     * Store the accumulated rotation.
+     * 存储累积的旋转。
      */
     private final float[] mAccumulatedRotation = new float[16];
 
     /**
-     * Store the current rotation.
+     * 存储当前旋转。
      */
     private final float[] mCurrentRotation = new float[16];
 
     /**
-     * A temporary matrix.
+     * 临时矩阵.
      */
     private float[] mTemporaryMatrix = new float[16];
 
     /**
-     * Stores a copy of the model matrix specifically for the light position.
+     * 存储专门针对灯光位置的模型矩阵的副本。
      */
     private float[] mLightModelMatrix = new float[16];
 
     /**
-     * This will be used to pass in the transformation matrix.
+     * 这将用于传递变换矩阵。
      */
     private int mMVPMatrixHandle;
 
     /**
-     * This will be used to pass in the modelview matrix.
+     * 这将用于传递模型视图矩阵。
      */
     private int mMVMatrixHandle;
 
     /**
-     * This will be used to pass in the light position.
+     * 这将用于传递光线位置。
      */
     private int mLightPosHandle;
 
     /**
-     * This will be used to pass in the texture.
+     * 这将用于传递纹理。
      */
     private int mTextureUniformHandle;
 
     /**
-     * This will be used to pass in model position information.
+     * 这将用于传递模型位置信息。
      */
     private int mPositionHandle;
 
     /**
-     * This will be used to pass in model normal information.
+     * 这将用于传递模型正常信息。
      */
     private int mNormalHandle;
 
     /**
-     * This will be used to pass in model texture coordinate information.
+     * 这将用于传递模型纹理坐标信息。
      */
     private int mTextureCoordinateHandle;
 
     /**
-     * Additional info for cube generation.
+     * 多维数据集生成的其他信息
      */
     private int mLastRequestedCubeFactor;
     private int mActualCubeFactor;
 
     /**
-     * Control whether vertex buffer objects or client-side memory will be used for rendering.
+     *控制是否将顶点缓冲区对象或客户端内存用于渲染。
      */
     private boolean mUseVBOs = true;
 
     /**
-     * Control whether strides will be used.
+     * 控制是否使用步幅。
      */
     private boolean mUseStride = true;
 
     /**
-     * Size of the position data in elements.
+     * 元素中位置数据的大小。
      */
     static final int POSITION_DATA_SIZE = 3;
 
     /**
-     * Size of the normal data in elements.
+     * 元素中正常数据的大小。
      */
     static final int NORMAL_DATA_SIZE = 3;
 
     /**
-     * Size of the texture coordinate data in elements.
+     * 元素中纹理坐标数据的大小。
      */
     static final int TEXTURE_COORDINATE_DATA_SIZE = 2;
 
     /**
-     * How many bytes per float.
+     * 每个浮点数多少字节。
      */
     static final int BYTES_PER_FLOAT = 4;
 
     /**
-     * Used to hold a light centered on the origin in model space. We need a 4th coordinate so we can get translations to work when
-     * we multiply this by our transformation matrices.
+     *用于在模型空间中保持以原点为中心的灯光。 我们需要第4个坐标，以便我们可以在何时获得翻译
+     *我们将它乘以变换矩阵。
      */
     private final float[] mLightPosInModelSpace = new float[]{0.0f, 0.0f, 0.0f, 1.0f};
 
     /**
-     * Used to hold the current position of the light in world space (after transformation via model matrix).
+     * 用于保持光在世界空间中的当前位置（通过模型矩阵转换后）。
      */
     private final float[] mLightPosInWorldSpace = new float[4];
 
     /**
-     * Used to hold the transformed position of the light in eye space (after transformation via modelview matrix)
+     * 用于保持光在眼睛空间中的变换位置（通过模型视图矩阵进行变换后）
      */
     private final float[] mLightPosInEyeSpace = new float[4];
 
     /**
-     * This is a handle to our cube shading program.
+     *这是我们的立方体着色程序的句柄。
      */
     private int mProgramHandle;
 
     /**
-     * These are handles to our texture data.
+     * 这些是我们的纹理数据的句柄。
      */
     private int mAndroidDataHandle;
 
-    // These still work without volatile, but refreshes are not guaranteed to happen.
+    //这些仍然没有波动，但不能保证刷新。
     public volatile float mDeltaX;
     public volatile float mDeltaY;
 
     /**
-     * Thread executor for generating cube data in the background.
+     * 用于在后台生成多维数据集数据的线程执行程序。
      */
     private final ExecutorService mSingleThreadedExecutor = Executors.newSingleThreadExecutor();
 
     /**
-     * The current cubes object.
+     * 当前的立方体对象。
      */
     private Cubes mCubes;
+    private Cubes mCubes2;
 
     /**
-     * Initialize the model data.
+     * 初始化模型数据。
      */
     public LessonSevenRenderer(final LessonSevenActivity lessonSevenActivity, final GLSurfaceView glSurfaceView) {
         mLessonSevenActivity = lessonSevenActivity;
@@ -268,11 +269,11 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
                                 0.0f, -1.0f, 0.0f
                         };
 
-                // S, T (or X, Y)
-                // Texture coordinate data.
-                // Because images have a Y axis pointing downward (values increase as you move down the image) while
-                // OpenGL has a Y axis pointing upward, we adjust for that here by flipping the Y axis.
-                // What's more is that the texture coordinates are the same for every face.
+                // S，T（或X，Y）
+                //纹理坐标数据。
+                //因为图像的Y轴指向下方（当您向下移动图像时值会增加）
+                // OpenGL的Y轴指向上方，我们通过翻转Y轴来调整它。
+                //更重要的是每张脸的纹理坐标都是一样的。
                 final float[] cubeTextureCoordinateData =
                         {
                                 // Front face
@@ -372,6 +373,10 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
                             mCubes.release();
                             mCubes = null;
                         }
+                        if (mCubes2 != null){
+                            mCubes2.release();
+                            mCubes2 = null;
+                        }
 
                         // Not supposed to manually call this, but Dalvik sometimes needs some additional prodding to clean up the heap.
                         System.gc();
@@ -391,14 +396,18 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
                             if (useStride) {
                                 if (useVbos) {
                                     mCubes = new CubesWithVboWithStride(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
+                                    mCubes2 = new CubesWithVboWithStride(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
                                 } else {
                                     mCubes = new CubesClientSideWithStride(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
+                                    mCubes2 = new CubesClientSideWithStride(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
                                 }
                             } else {
                                 if (useVbos) {
                                     mCubes = new CubesWithVbo(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
+                                    mCubes2 = new CubesWithVbo(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
                                 } else {
                                     mCubes = new CubesClientSide(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
+                                    mCubes2 = new CubesClientSide(cubePositionData, cubeNormalData, cubeTextureCoordinateData, mRequestedCubeFactor);
                                 }
                             }
 
@@ -414,7 +423,10 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
                                 mCubes.release();
                                 mCubes = null;
                             }
-
+                            if (mCubes2 != null) {
+                                mCubes2.release();
+                                mCubes2 = null;
+                            }
                             // Not supposed to manually call this, but Dalvik sometimes needs some additional prodding to clean up the heap.
                             System.gc();
 
@@ -469,7 +481,7 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
         // Set the background clear color to black.
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        // Use culling to remove back faces.
+        // 使用剔除去除背面。
         GLES20.glEnable(GLES20.GL_CULL_FACE);
 
         // Enable depth testing
@@ -505,7 +517,7 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
                 new String[]{"a_Position", "a_Normal", "a_TexCoordinate"});
 
         // Load the texture
-        mAndroidDataHandle = TextureHelper.loadTexture(mLessonSevenActivity, R.drawable.usb_android);
+        mAndroidDataHandle = TextureHelper.loadTexture(mLessonSevenActivity, R.drawable.ic_gril);
         GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mAndroidDataHandle);
@@ -514,7 +526,7 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mAndroidDataHandle);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR_MIPMAP_LINEAR);
 
-        // Initialize the accumulated rotation matrix
+        // 初始化累积的旋转矩阵
         Matrix.setIdentityM(mAccumulatedRotation, 0);
     }
 
@@ -552,19 +564,19 @@ public class LessonSevenRenderer implements GLSurfaceView.Renderer {
         mNormalHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_Normal");
         mTextureCoordinateHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_TexCoordinate");
 
-        // Calculate position of the light. Push into the distance.
+        // 计算光的位置。 推到远处。
         Matrix.setIdentityM(mLightModelMatrix, 0);
         Matrix.translateM(mLightModelMatrix, 0, 0.0f, 0.0f, -1.0f);
 
         Matrix.multiplyMV(mLightPosInWorldSpace, 0, mLightModelMatrix, 0, mLightPosInModelSpace, 0);
         Matrix.multiplyMV(mLightPosInEyeSpace, 0, mViewMatrix, 0, mLightPosInWorldSpace, 0);
 
-        // Draw a cube.
-        // Translate the cube into the screen.
+        //画一个立方体
+        //将立方体翻译成屏幕。
         Matrix.setIdentityM(mModelMatrix, 0);
         Matrix.translateM(mModelMatrix, 0, 0.0f, 0.0f, -3.5f);
 
-        // Set a matrix that contains the current rotation.
+        // 设置包含当前旋转的矩阵。
         Matrix.setIdentityM(mCurrentRotation, 0);
         Matrix.rotateM(mCurrentRotation, 0, mDeltaX, 0.0f, 1.0f, 0.0f);
         Matrix.rotateM(mCurrentRotation, 0, mDeltaY, 1.0f, 0.0f, 0.0f);

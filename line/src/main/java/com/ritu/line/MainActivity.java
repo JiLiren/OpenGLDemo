@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         GLSurfaceView glSurfaceView = new GLSurfaceView(this);
         glSurfaceView.setEGLContextClientVersion(2);
         glSurfaceView.setEGLConfigChooser(false);
-        glSurfaceView.setRenderer(new PolygonRender(this));
+        glSurfaceView.setRenderer(new MyRender());
         glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
         setContentView(glSurfaceView);
     }

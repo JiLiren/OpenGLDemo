@@ -39,7 +39,7 @@ public class TextureRender extends BaseRenderer {
 
     private int POSITION_COMPONENT_COUNT = 2;
 
-    private float[] POINT_DATA = new float[]{-0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, 0.5f, -0.5f};
+    private float[] POINT_DATA = new float[]{-1.0f, -0.5f, -1.0f, 0.5f, 0.5f, 1.0f, 1.0f, -0.5f};
 
     /**
      * 纹理坐标

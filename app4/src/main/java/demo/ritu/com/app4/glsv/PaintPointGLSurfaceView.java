@@ -27,13 +27,18 @@ public class PaintPointGLSurfaceView extends BaseGLSurfaceView {
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mPoint.setPosition(x * 2 / PaintPointRenderer.width - 1.0f, 1.0f - y * 2 / PaintPointRenderer.height);
+                float xx = x * 2 / PaintPointRenderer.width - 1.0f;
+                float yy = 1.0f - y * 2 / PaintPointRenderer.height;
+                mPoint.setPosition(xx, yy);
                 mPoint.setColor(0.0f, 1.0f, 0.0f, 1.0f);
                 break;
             case MotionEvent.ACTION_UP:
-                mPoint.setPosition(x * 2 / PaintPointRenderer.width - 1.0f, 1.0f - y * 2 / PaintPointRenderer.height);
+                float xx1 = x * 2 / PaintPointRenderer.width - 1.0f;
+                float yyy = 1.0f - y * 2 / PaintPointRenderer.height;
+                mPoint.setPosition(xx1, yyy);
                 mPoint.setColor(0.0f, 0.0f, 1.0f, 1.0f);
                 break;
+            default:break;
         }
         return super.onTouchEvent(event);
     }

@@ -3,12 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OpenGLDemo.iml" filepath="$PROJECT_DIR$/OpenGLDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animation/animation.iml" filepath="$PROJECT_DIR$/animation/animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app3/app3.iml" filepath="$PROJECT_DIR$/app3/app3.iml" />
       <module fileurl="file://$PROJECT_DIR$/app4/app4.iml" filepath="$PROJECT_DIR$/app4/app4.iml" />
       <module fileurl="file://$PROJECT_DIR$/app5/app5.iml" filepath="$PROJECT_DIR$/app5/app5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/course/course.iml" filepath="$PROJECT_DIR$/course/course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/es1/es1.iml" filepath="$PROJECT_DIR$/es1/es1.iml" />
       <module fileurl="file://$PROJECT_DIR$/line/line.iml" filepath="$PROJECT_DIR$/line/line.iml" />
+      <module fileurl="file://$PROJECT_DIR$/map/map.iml" filepath="$PROJECT_DIR$/map/map.iml" />
       <module fileurl="file://$PROJECT_DIR$/matrix/matrix.iml" filepath="$PROJECT_DIR$/matrix/matrix.iml" />
     </modules>
   </component>

@@ -481,7 +481,7 @@ public class LessonSixRenderer implements GLSurfaceView.Renderer {
                 new String[]{"a_Position"});
 
         // Load the texture
-        mBrickDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.stone_wall_public_domain);
+        mBrickDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.bumpy_bricks_public_domain);
         GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);
 
         mGrassDataHandle = TextureHelper.loadTexture(mActivityContext, R.drawable.noisy_grass_public_domain);
